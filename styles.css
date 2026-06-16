@@ -103,6 +103,43 @@ label {
     align-items: center;
 }
 
+.menu-toggle {
+    display: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 38px;
+    height: 32px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 20;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--gray);
+    margin: 5px 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.menu-close {
+    display: none;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 20;
+}
+
 .nav-items a {
     font-size: 0.95rem;
     color: var(--gray);
@@ -112,6 +149,67 @@ label {
 
 .nav-items a:hover {
     color: var(--black);
+}
+
+.navbar.nav-open .menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.navbar.nav-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar.nav-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 960px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-items {
+        position: fixed;
+        inset: 72px 0 0 0;
+        min-height: calc(100vh - 72px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 3.5rem 2rem 2rem;
+        gap: 1.5rem;
+        background: rgba(0, 0, 0, 0.98);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 15;
+        overflow-y: auto;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .navbar.nav-open .nav-items {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .menu-close {
+        display: block;
+        color: var(--white);
+        font-size: 2.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .nav-items a {
+        font-size: 1rem;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        opacity: 1;
+    }
+
+    .nav-items a:hover {
+        color: var(--gray);
+    }
 }
 
 /* ============================================

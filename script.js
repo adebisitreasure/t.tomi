@@ -106,10 +106,47 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === lightbox) closeLightbox();
     });
 
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    const navItems = document.querySelector('.nav-items');
+    const navLinks = document.querySelectorAll('.nav-items a');
+    const menuClose = document.querySelector('.menu-close');
+
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
+        if (e.key === 'Escape') {
+            if (lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+            if (navbar && navbar.classList.contains('nav-open')) {
+                navbar.classList.remove('nav-open');
+            }
         }
+    });
+
+    if (menuToggle && navbar) {
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('nav-open');
+        });
+    }
+
+    if (menuClose && navbar) {
+        menuClose.addEventListener('click', () => {
+            navbar.classList.remove('nav-open');
+        });
+    }
+
+    if (navItems) {
+        navItems.addEventListener('click', (e) => {
+            if (e.target === navItems) {
+                navbar.classList.remove('nav-open');
+            }
+        });
+    }
+
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            if (navbar) navbar.classList.remove('nav-open');
+        });
     });
 });
 
