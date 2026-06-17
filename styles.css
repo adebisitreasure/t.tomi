@@ -54,7 +54,8 @@ input {
     position: fixed;
     width: 100%;
     z-index: 10;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
 
     border-bottom: 1px solid var(--border);
 }
@@ -580,6 +581,12 @@ label {
 
     .footer {
         padding: 2rem 1.5rem 3rem;
+    }
+
+    .footer-columns {
+        display: flex;
+        flex-direction: row;
+        gap: 5rem;
     }
 }
 
